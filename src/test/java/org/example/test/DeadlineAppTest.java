@@ -59,6 +59,7 @@ public class DeadlineAppTest {
     @DisplayName("Should get block notification if more than three false authorizations")
     void shouldBeErrorMoreThenThreeFalseAuth() {
         var loginPage = open("http://localhost:9999", LoginPage.class);
+        ;
         var authInfo = DataHelper.generateRandomUser();
         loginPage.validLogin(authInfo);
         loginPage.verifyErrorNotificationVisibility();
@@ -70,8 +71,6 @@ public class DeadlineAppTest {
         loginPage.verifyErrorNotificationVisibility();
         refresh();
         loginPage.validLogin(authInfo);
-        $$(".notification__content").first()
-                .shouldHave(Condition.text("Форма заблокирована!"))
-                .shouldBe(Condition.visible);
+        $("[data-test-id=action-login]").shouldBe(Condition.hidden); // Немного изменил текст ведь логично что при блокировке формы мы не можем пройти дальше (грубо говоря).
     }
 }

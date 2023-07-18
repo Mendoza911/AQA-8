@@ -63,14 +63,14 @@ public class DeadlineAppTest {
         var authInfo = DataHelper.generateRandomUser();
         loginPage.validLogin(authInfo);
         loginPage.verifyErrorNotificationVisibility();
-        refresh();
+        loginPage.clear();
         loginPage.validLogin(authInfo);
         loginPage.verifyErrorNotificationVisibility();
-        refresh();
+        loginPage.clear();
         loginPage.validLogin(authInfo);
         loginPage.verifyErrorNotificationVisibility();
-        refresh();
+        loginPage.clear();
         loginPage.validLogin(authInfo);
-        $("[data-test-id=action-login]").shouldBe(Condition.hidden); // Немного изменил текст ведь логично что при блокировке формы мы не можем пройти дальше (грубо говоря).
+        loginPage.getBlockInfo();
     }
 }
